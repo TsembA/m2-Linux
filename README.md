@@ -1,10 +1,15 @@
 ## 2 - Operating Systems & Linux Basics
 
 ### Virtualization & Virtual Machines
+Virtualization is the process of creating a software-based, or "virtual"
+version of a computer, with dedicated amounts of CPU, memory, and
+storage that are "borrowed" from a physical host computer
+Makes it possible that any OS can run on top of any other physical
+host machine
+The VM is partitioned from the rest of the system, meaning it's
+completely isolated and can't interfere with the host computer's
+primary OS
 
-You need a hypervisor to run multiple virtual machines using a physical Host OS
-Most popular hypervisor is VirtualBox (Used this in the past but sinds I switched to M1 I needed to use UTM because
-VirtualBox does not support M1 )
 VMs are isolated Type 2 vs Type 1 Hypervisor: Type 1 installed directly on hardware for servers, Type 2 uses host OS on
 personal computer
 
