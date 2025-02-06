@@ -10,7 +10,7 @@ The VM is partitioned from the rest of the system, meaning it's
 completely isolated and can't interfere with the host computer's
 primary OS
 
-VMs are isolated Type 2 vs Type 1 Hypervisor: Type 1 installed directly on hardware for servers, Type 2 uses host OS on
+VMs are isolated Type 1 vs Type 2 Hypervisor: Type 1 installed directly on hardware for servers, Type 2 uses host OS on
 personal computer
 
 - Benefits Type 2: learn & experiment, don’t endanger main OS, test app on different OS
@@ -88,21 +88,6 @@ Knows where to put all files in system
 ```apt autoremove```
 ```apt full-upgrade```
 
-### VIM text editor
-
-* :wq = quit and save
-* :q! = quit without saving
-* dd = delete line
-* d10d = delete next 10 lines
-* u = undo
-* A = jump to end of line, switch insert mode
-* $ = jump to end line, without switch insert mode
-* 0 = jump to beginning of line
-* 12G = jump to line 12
-* /pattern = search for pattern
-* n = jump to next match
-* N = jump to previous match
-* :%s/old/new = replace old with new throughout file
 
 ### Users, Groups & Permissions
 
