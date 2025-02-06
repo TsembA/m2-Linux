@@ -75,9 +75,9 @@ Hidden files (starts with a dot)
 
 ### Package manager: APT
 
-Resolves dependencies for installing software
-Ensure integrity & authenticity of package
-Downloads, installs or updates existing software from repo
+Resolves dependencies for installing software. 
+Ensure integrity & authenticity of package. 
+Downloads, installs or updates existing software from repo. 
 Knows where to put all files in system
 
 ```apt search <package name>```
