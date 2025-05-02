@@ -1,152 +1,150 @@
-## 2 - Operating Systems & Linux Basics
+## 🖥️ Operating Systems & Linux Basics
 
-### Virtualization & Virtual Machines
-Virtualization is the process of creating a software-based, or "virtual"
-version of a computer, with dedicated amounts of CPU, memory, and
-storage that are "borrowed" from a physical host computer
-Makes it possible that any OS can run on top of any other physical
-host machine
-The VM is partitioned from the rest of the system, meaning it's
-completely isolated and can't interfere with the host computer's
-primary OS
+### 🧱 Virtualization & Virtual Machines
 
-VMs are isolated Type 1 vs Type 2 Hypervisor: Type 1 installed directly on hardware for servers, Type 2 uses host OS on
-personal computer
+Virtualization is the process of creating a software-based ("virtual") version of a computer, with dedicated CPU, memory, and storage borrowed from a physical host machine.
 
-- Benefits Type 2: learn & experiment, don’t endanger main OS, test app on different OS
-- Benefits Type 1: efficient usage of hardware resources, abstraction of OS from hardware via VMI (Virtual Machine
-  Image) with backups/snaphots
+💡 **Key Points:**
+- Any OS can run on top of any other physical host.
+- The VM is isolated from the host system.
 
-### Linux File System
+👥 **Hypervisors:**
+- **Type 1 (Bare Metal):** Installed directly on hardware (e.g., for servers).
+- **Type 2 (Hosted):** Installed on host OS (e.g., for personal experimentation).
 
-Everything in Linux is a file(In MAC / Windows it is not the case)
-A root user has its own home directory. This directory can be different in different oses (In MAC it is /Users/username)
+🎯 **Benefits:**
+- Type 2: Safe testing, learning without affecting main OS.
+- Type 1: Better performance, snapshot support, abstracted hardware.
 
-#### Linux folder structure
+---
 
-* /home/{Username} dir of non-root users (If the user is created with a home directory)
-* /bin executables for essential system cmd
-* /sbin system binaries, need super user privileges to execute
-* /lib shared lib that execs from /bin or /sbin use
-* /usr was used for user home dir (histroic reasons due to storage limitations)
-* /usr/local programs that YOU install on computer (3rd party apps) available for all users
-* /opt 3rd party programs you install that DONT split its components
-* /boot files required for booting
-* /etc system config
-* /dev device files (webcam, mouse, keyboard etc)
-* /var stores logs
-* /var/cache
-* /tmp temporary resources required for processes
-* /media removable media
-* /mnt temporary mount points
+### 📂 Linux File System
 
-Hidden files (starts with a dot)
+Everything in Linux is a file. Root users have their own home directories depending on the OS (e.g., `/Users/username` in macOS).
 
-### Commands
+#### 🗂️ Folder Structure
+- `/home/{username}` – User home directories
+- `/bin` – Essential command binaries
+- `/sbin` – System binaries (needs sudo)
+- `/lib` – Shared libraries
+- `/usr` – Historically user home dir
+- `/usr/local` – User-installed programs
+- `/opt` – Optional software
+- `/boot` – Boot loader files
+- `/etc` – Configuration files
+- `/dev` – Device files (webcam, keyboard)
+- `/var` – Logs
+- `/tmp` – Temporary files
+- `/media`, `/mnt` – Mount points
 
-* pwd = show current dir
-* ls = list contents
-* cd = change dir (cd / = change to root dir and empty cd is go to home)
-* mkdir = make dir
-* touch = create file
-* rm = delete file
-* rm -r = delete non-empty dir with files in it
-* rmdir = delete empty dir
-* clear = clears terminal
-* mv <old-name> <new-name> = rename file to new name
-* cp -r <dir> <new-dir> = copy contents folder to new folder
-* ls -R = list all folders and files in each
-* history = lists all recent cmd in terminal
-* ls -a = display hidden files
-* ls -l = print files in long list format (ls -la for listing hidden files)
-* cat = show contents file
-* uname -a = show system & kernel
-* cat /etc/os-release = show release version
-* lscpu = cpu info
-* lsmem = memory info
-* sudo = grants super user privileges for cmd
-* su - <username> = become user
-* | = pipe, passes output of one cmd as input of next cmd
-* <input> | less = displays reader friendly format for info in CLI
-* <input> | grep <pattern> = filter input based on pattern search
-*  > = redirect, takes output from previous cmd and sends it to file that you give (overrides contents file)
-* > > = appends text to end of file
-* > > Can pass multiple cmd in one line separated by ;
+📁 Hidden files begin with a `.`
 
-### Package manager: APT
+---
 
-Resolves dependencies for installing software. 
-Ensure integrity & authenticity of package. 
-Downloads, installs or updates existing software from repo. 
-Knows where to put all files in system
+### 🛠️ Basic Linux Commands
 
-```apt search <package name>```
-```apt install <package name>```
-```apt remove <package name>```
-```apt update```
-```apt upgrade```
-```apt autoremove```
-```apt full-upgrade```
+```bash
+pwd                  # Current directory
+ls                   # List contents
+cd                   # Change directory
+mkdir <dir>          # Make directory
+touch <file>         # Create file
+rm <file>            # Delete file
+rm -r <dir>          # Delete non-empty directory
+rmdir <dir>          # Delete empty directory
+clear                # Clear terminal
+mv old new           # Rename or move file
+cp -r src dst        # Copy directory
+ls -R                # Recursive listing
+ls -a                # Show hidden files
+ls -l                # Long format
+cat <file>           # Show file contents
+uname -a             # System/kernel info
+cat /etc/os-release  # OS release version
+lscpu                # CPU info
+lsmem                # Memory info
+sudo <cmd>           # Superuser privileges
+su - <user>          # Switch user
+```
 
+🔧 **Pipes, Redirects & History**
+```bash
+|        # Pipe output to next command
+<cmd> | less      # Pager display
+<cmd> | grep xyz  # Filter by pattern
+> file            # Redirect output to file (overwrite)
+>> file           # Append output to file
+;                 # Run multiple commands in one line
+history           # Command history
+```
 
-### Users, Groups & Permissions
+---
 
-3 user categories:
+### 📦 APT Package Manager
 
-* Root user
-* Regular user
-* Service user (best practice for security) (no login shell) These users can be used for nexus or docker as an example
+APT handles package installation, dependency resolution, and integrity.
 
-Can group users and define group permissions
-Users can have multiple groups
+```bash
+apt search <package>       # Search package
+apt install <package>      # Install package
+apt remove <package>       # Remove package
+apt update                 # Update package list
+apt upgrade                # Upgrade packages
+apt autoremove             # Remove unused packages
+apt full-upgrade           # Full upgrade
+```
 
-#### Commands
+---
 
-* adduser <username>
-* passwd <username>
-* su - <username>
-* su - switch root user
-* groupadd <groupname>
-* deluser <username>
-* groupdel >groupname>
-* usermod [OPTIONS] <username>
-* usermod -g <groupname> <username>
-* usermod -G <groupname> <username> (overrides secondary groups list)
-* usermod -aG <groupname> <username> (appends to existing list)
-* gpasswd -d <username> <groupname>
-* groups <username> (lists users groups)
-* exit (logout user)
-* chown <username>:<groupname> <filename> (change file ownership)
-* chgrp <groupname> <filename>
+### 👤 Users, Groups & Permissions
 
-#### Permissions
+👥 **User Types:**
+- Root user
+- Regular user
+- Service user (e.g., for Docker/Nexus)
 
-(owner)
+Users can belong to multiple groups. Groups manage collective permissions.
 
-* r = read
-* w = write
-* x = execute
-* -= No permission
+#### 🧑‍💻 User & Group Management
+```bash
+adduser <user>
+passwd <user>
+su - <user>
+groupadd <group>
+deluser <user>
+groupdel <group>
+usermod -g <group> <user>        # Set primary group
+usermod -G <group> <user>        # Override secondary groups
+usermod -aG <group> <user>       # Append to groups
+gpasswd -d <user> <group>        # Remove user from group
+groups <user>
+exit                             # Logout
+```
 
-(group)
+#### 🗝️ File Ownership & Permissions
+```bash
+chown user:group <file>    # Change file owner
+group <file>               # Change file group
+```
 
-* r = read
-* w = write
-* x = execute
-* -= No permission
+🔐 **Permissions Reference:**
+- `r` = read
+- `w` = write
+- `x` = execute
+- `-` = no permission
 
-(other)
+👤 Owner | 👥 Group | 🌍 Others
 
-* r = read
-* w = write
-* x = execute
-* -= No permission
+#### 🔒 chmod Examples
+```bash
+chmod -x <file>         # Remove execute for all
+chmod g-w <file>        # Remove write for group
+chmod g+x <file>        # Add execute for group
+chmod u+x <file>        # Add execute for user
+chmod o+x <file>        # Add execute for others
+chmod g=rwx <file>      # Set exact permissions for group
+chmod 777 <file>        # Full permission to everyone (⚠️ caution!)
+```
 
-##### Chmod
-* chmod -x <filename> (remove execute permissions for all owners)
-* chmod g-w <filename> (remove write permissions for group)
-* chmod g+x <filename> (add execute permissions for group)
-* chmod u+x <filename> (add execute permission for user)
-* chmod o+x <filename> (add execute permission for others)
-* chmod g=rwx <filename> (sets specific block permissions for group)
-* chmod 777 <filename> (gives all permission to all owners)
+---
+
